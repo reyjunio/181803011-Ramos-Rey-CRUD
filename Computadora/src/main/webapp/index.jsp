@@ -20,24 +20,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <title>Computadoras</title>
-        <style>
-            table, th, td {
-                font-family: arial, sans-serif;
-            }
-        </style>
     </head>
     <body>
-        <div class="container table-responsive" >
-            <h1> Tabla Computadoras </h1>
-            <table class="table table-striped table-bordered table-hover table-dark""> 
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed  table-hover"> 
+                <h1 class="table-dark"><center>TIENDAPCGAMING.COM</center></h1>
                 <thead>
-                    <tr class="bg-success">
-                        <th># ID</th>
+                    <tr>
+                        <th colspan="7" class="table-primary"><h1>Computadoras U.S.A</h1></th>
+                        <td colspan="1" class="table-primary"><a href="Marcas.jsp"><h6>Ver Marcas</h6></a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><a class="btn btn-success btn-block" href="formularioUsuario.jsp">Agregar Registro</a></td>
+                    </tr> 
+                    <tr class="table-warning">
+                        <th>#ID</th>
                         <th>Precio</th>
                         <th>Procesador</th>
                         <th>Ram</th>
-                        <th>id_Marca</th>
-                    </tr>
+                        <th>Marca</th>
+                        <th colspan="4"><center>Operaciones</center></th>
+                </tr>
                 </thead>
                 <%while (rs.next()) {%>
                 <tr>
@@ -46,43 +49,12 @@
                     <td><%=rs.getString("procesador")%></td>
                     <td><%=rs.getString("Ram")%></td>
                     <td><%=rs.getString("id_marca")%></td>
+                    <td><a class="btn btn-info btn-block" href="Editar.jsp">Editar Registro</a></td>
+                    <td><a class="btn btn-danger btn-block" href="Editar.jsp">Eliminar</a></td>
+                    <td><a class="btn btn-danger btn-block" href="Editar.jsp">EliminarV2</a></td>
                 </tr>
                 <%}%>
-            </table><br>
-            <%
-                try {
-                    Class.forName("com.mysql.jdbc.Driver");
-                    conexion = DriverManager.getConnection("jdbc:mysql://localhost/computadoras", "root", "");
-                    stmt = conexion.createStatement();
-                    rs = stmt.executeQuery("SELECT * from marcas");
-                } catch (Exception e) {
-                    out.println("Error " + e);
-                }
-            %>
-            <h1> Tabla Marcas Computadoras </h1>
-            <table class="table table-striped table-bordered table-hover table-dark">
-                <thead>
-                    <tr>
-                        <td colspan="2"><a class="btn btn-success btn-block" href="Agregar.jsp">Agregar</a></td>
-                    </tr> 
-                    <tr>
-                        <td colspan="2"><a class="btn btn-info btn-block" href="Editar.jsp">Editar</a></td>
-                    </tr> 
-                    <tr>
-                        <td colspan="2"><a class="btn btn-danger btn-block" href="Eliminar.jsp">Eliminar</a></td>
-                    </tr> 
-                    <tr class="table-active bg-danger">
-                        <th># ID</th>
-                        <th>Nombre</th>
-                    </tr>
-                </thead>
-                <%while (rs.next()) {%>
-                <tr>
-                    <td><%=rs.getString("id_marca")%></td>
-                    <td><%=rs.getString("nombre")%></td>
-                </tr>
-                <%}%>
-            </table><br>
+            </table>
         </div>
     </body>
 </html>
